@@ -24,6 +24,10 @@ decision boundary rather than by file type is what stops a roster becoming a
 committee. The proposed team, the product architect's remit, and the roles
 deliberately not created are in [`docs/product-team.md`](docs/product-team.md).
 
+The same rule applied to a DevOps managed-services engagement gives a different
+roster, because an engagement has a scope boundary that a product does not. That
+team is in [`agents/README.md`](agents/README.md).
+
 Every reviewer agent carries two tables: what is already fixed, and what is
 known and accepted. Without them a reviewer re-reports resolved findings every
 run, and a report that is mostly noise gets skipped.

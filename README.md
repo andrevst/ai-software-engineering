@@ -15,6 +15,7 @@ Use this repo as the parent folder of your project repos. The skills and guideli
 
 ```
 ai-software-engineering/
+├── agents/         # The DevOps as a Service agent team (4 roles)
 ├── docs/           # Reference knowledge: AI tools, security, ecosystem
 ├── guidelines/     # Coding and documentation standards (language-specific)
 ├── mcps/           # Tested MCP servers — setup, capabilities, DevOps use cases
@@ -47,6 +48,9 @@ ai-software-engineering/
 
 | Need | Where to look |
 |------|--------------|
+| The DevOps engagement agent team | `agents/README.md` |
+| How to organize agents around a product | `docs/product-team.md` |
+| Release management workflow | `skills/release-management/SKILL.md` |
 | Which MCPs to install | `mcps/` |
 | Reusable DevOps agent prompts | `prompts/devops/` |
 | TypeScript coding standards | `guidelines/typescript.md` |
@@ -55,7 +59,6 @@ ai-software-engineering/
 | Full AI tools ecosystem reference | `docs/ai-tools-reference.md` |
 | Graphify knowledge graph skill | `skills/graphify.md` |
 | CLAUDE.md starter template | `templates/CLAUDE.md` |
-| How to organize agents around a product | `docs/product-team.md` |
 | A validated base architecture and its decisions | `docs/base-architecture.md` |
 | Rules for adding dependencies and what counts as an acceptable vulnerability | `guidelines/dependency-policy.md` |
 | Per-project AI tooling inventory | `templates/ai-tooling.md` + `tools/ai-inventory.sh` |
