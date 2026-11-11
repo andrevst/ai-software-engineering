@@ -67,3 +67,68 @@ Examples:
 - grafana: https://grafana.internal — dashboards, alerts, Loki/Prometheus queries
 - notion: team runbook workspace
 -->
+
+## Environments and promotion order
+
+<!-- The agent team reads this to decide where a change lands and in what order.
+     Without it, the release-management skill stops and asks. -->
+
+<!--
+Example:
+staging -> canary (2 tenants) -> production (41 tenants)
+Admin components promote last, regardless of ring.
+-->
+
+## Ticket tracker and conventions
+
+<!-- Where work items live, the id format, and the commit subject form.
+     The technical-manager agent reads this before creating or referencing a ticket. -->
+
+<!--
+Example:
+- Tracker: Linear, team ACME, ids ACME-NNNN
+- Branch naming: acme-NNNN-<slug>, or devops/<slug> with no ticket
+- Commit subject: <type>: <subject>, no scope in parentheses
+- Release commit subject: release: <component> <version>
+-->
+
+## Verification commands
+
+<!-- The exact commands that prove a change is safe in this repo.
+     The devops-platform-engineer agent runs these; the sre agent re-runs them. -->
+
+<!--
+Example:
+terraform fmt -recursive -check
+terraform validate
+terraform plan -var-file=<env>.tfvars -out=tfplan
+tflint --recursive
+helm template <release> <chart> -f <values> | kubectl apply --dry-run=server -f -
+-->
+
+## Documentation locations
+
+<!-- Where the architect writes, so decisions do not land in a new folder each time. -->
+
+<!--
+Example:
+- Architecture: docs/architecture/ (arc42, numbered 01- to 13-)
+- Decisions: docs/adrs/ (MADR format, numbers assigned at merge)
+- Runbooks: docs/runbooks/
+- Releases: docs/releases/
+-->
+
+## Agent team
+
+<!-- Which agents are active for this engagement. See
+     ai-software-engineering/agents/README.md for the team and the flow. -->
+
+<!--
+Example:
+| Agent | Active | Notes |
+|-------|--------|-------|
+| technical-manager | yes | Linear writes require explicit approval |
+| cloud-solutions-architect | yes | AWS Well-Architected lens |
+| devops-platform-engineer | yes | |
+| sre | yes | read-only on production, always fresh context |
+-->

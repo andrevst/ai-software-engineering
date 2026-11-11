@@ -15,6 +15,7 @@ Use this repo as the parent folder of your project repos. The skills and guideli
 
 ```
 ai-software-engineering/
+├── agents/         # The DevOps as a Service agent team (4 roles)
 ├── docs/           # Reference knowledge: AI tools, security, ecosystem
 ├── guidelines/     # Coding and documentation standards (language-specific)
 ├── mcps/           # Tested MCP servers — setup, capabilities, DevOps use cases
@@ -23,8 +24,8 @@ ai-software-engineering/
 │   ├── analysis/   # Ticket analysis, debugging, investigation prompts
 │   └── adrs/       # Architecture Decision Record workflow prompts
 ├── skills/         # Custom skills and slash commands
-├── tools/          # Claude Code plugins and security tooling reference
-└── templates/      # CLAUDE.md templates, project bootstrap files
+├── tools/          # Claude Code plugins, security tooling, inventory script
+└── templates/      # CLAUDE.md and AI inventory templates, bootstrap files
 ```
 
 ## How to use
@@ -38,12 +39,18 @@ ai-software-engineering/
    ```
 2. Copy `templates/CLAUDE.md` into each project as a starting point.
 3. Add project-specific rules, blast-radius docs, and slash commands inside the project's own `.claude/`.
-4. Prompts in `prompts/` are self-contained briefs — copy and adapt to your platform context before running.
+4. Prompts in `prompts/` are self-contained briefs: copy and adapt to your platform context before running.
+5. Run `tools/ai-inventory.sh` from a project to see what AI tooling that
+   project actually has, then fill in `templates/ai-tooling.md` as its
+   `docs/ai-tooling.md`.
 
 ## Quick reference
 
 | Need | Where to look |
 |------|--------------|
+| The DevOps engagement agent team | `agents/README.md` |
+| How to organize agents around a product | `docs/product-team.md` |
+| Release management workflow | `skills/release-management/SKILL.md` |
 | Which MCPs to install | `mcps/` |
 | Reusable DevOps agent prompts | `prompts/devops/` |
 | TypeScript coding standards | `guidelines/typescript.md` |
@@ -52,3 +59,6 @@ ai-software-engineering/
 | Full AI tools ecosystem reference | `docs/ai-tools-reference.md` |
 | Graphify knowledge graph skill | `skills/graphify.md` |
 | CLAUDE.md starter template | `templates/CLAUDE.md` |
+| A validated base architecture and its decisions | `docs/base-architecture.md` |
+| Rules for adding dependencies and what counts as an acceptable vulnerability | `guidelines/dependency-policy.md` |
+| Per-project AI tooling inventory | `templates/ai-tooling.md` + `tools/ai-inventory.sh` |
