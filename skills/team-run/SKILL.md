@@ -168,8 +168,19 @@ The index states the authority order explicitly, because readers arrive at file
 
 ## Invoking it
 
+The skill is invoked by name, or through the slash command that wraps it. The
+slash command needs its own file; a skill alone does not create one.
+
+| Path | Needs |
+|---|---|
+| Ask for it in words: "run the team over `<folder>`" | nothing, the description triggers it |
+| `Skill` tool, name `team-run` | the skill on a loaded skills path |
+| `/team-run <folder> [flags]` | [`../../commands/team-run.md`](../../commands/team-run.md) symlinked into the project's `.claude/commands/` |
+
+Arguments, in every path:
+
 ```text
-/team-run <prompt-folder> [--out <run-folder>] [--only 01,04,07] [--access read-only|none]
+<prompt-folder> [--out <run-folder>] [--only 01,04,07] [--access read-only|none]
 ```
 
 - `--access none` is the default for an analysis run: git and filesystem only,

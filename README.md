@@ -16,6 +16,7 @@ Use this repo as the parent folder of your project repos. The skills and guideli
 ```
 ai-software-engineering/
 ├── agents/         # The DevOps as a Service agent team (4 roles)
+├── commands/       # Slash-command wrappers, symlink into a project's .claude/commands/
 ├── docs/           # Reference knowledge: AI tools, security, ecosystem
 ├── guidelines/     # Coding and documentation standards (language-specific)
 ├── mcps/           # Tested MCP servers — setup, capabilities, DevOps use cases
