@@ -51,6 +51,7 @@ ai-software-engineering/
 | The DevOps engagement agent team | `agents/README.md` |
 | How to organize agents around a product | `docs/product-team.md` |
 | Release management workflow | `skills/release-management/SKILL.md` |
+| Running a folder of prompts through the team | `skills/team-run/SKILL.md` |
 | Which MCPs to install | `mcps/` |
 | Reusable DevOps agent prompts | `prompts/devops/` |
 | TypeScript coding standards | `guidelines/typescript.md` |

@@ -53,6 +53,14 @@ This is one extra decider than the product roster, and it is justified by the
 engagement context, not by preference. If an engagement has no commercial scope
 boundary, drop the technical manager and let the architect hold both.
 
+## Running many items at once
+
+One work item goes to one agent. A folder of work items goes through
+[`../skills/team-run/SKILL.md`](../skills/team-run/SKILL.md), which fans out one
+agent per prompt, verifies each result as it lands, and closes the batch with one
+report. That skill carries the stage gates learned from running this flow by
+hand, including the ref check that a stale working tree otherwise defeats.
+
 ## Why four and not seven
 
 A role earns an agent when it owns an artifact and passes a gate that can fail.
