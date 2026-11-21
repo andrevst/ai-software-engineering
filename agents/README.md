@@ -53,6 +53,49 @@ This is one extra decider than the product roster, and it is justified by the
 engagement context, not by preference. If an engagement has no commercial scope
 boundary, drop the technical manager and let the architect hold both.
 
+## What the review layer is worth, measured
+
+One run over a 17-repository workspace produced 75 findings rated Critical or
+High. The verification pass re-ran the evidence command behind each one:
+
+| Outcome | Count |
+|---|---|
+| Confirmed | 36 |
+| Confirmed with a correction | 29 |
+| Not reproducible | 3 |
+| False | 7 |
+
+So 39 of 75 findings, slightly over half, were wrong in a way that mattered
+before anything was built on them. The close-out then corrected one claim in the
+verification pass itself. Three layers, three levels of error removed.
+
+The single most consequential catch was not technical. One producer had read the
+tip of a branch 270 commits behind the default branch with 51 dirty files and
+presented it as current state. No review of the findings' content reveals that.
+Only checking the ref before opening the file reveals it, which is why it is now
+a gate in both the architect's definition and the run procedure.
+
+## When an agent may commit
+
+The team's default is that no agent commits, pushes, or applies. One narrow
+exception is worth stating explicitly, because leaving it implicit has already
+cost real work: on one engagement, five review agents ran with an instruction to
+open pull requests, two read "never commit or push" literally and stopped with
+their work staged, and three committed to a branch and opened the PR. Both
+readings were defensible, which means the rule was at fault.
+
+| Change | What the agent does |
+|---|---|
+| Anything that alters infrastructure or runtime behavior: Terraform, charts, manifests, application code | Prepare it, draft the commit message, stop. Even on a branch |
+| Documentation only, and the operator asked for a pull request | Commit to its own branch and open the PR. Never push to the default branch, never merge |
+
+**A single line of product code in the diff makes the whole change a product
+change.** Do not split a diff to get around this. An agent that is unsure stops,
+which is correct behavior; the fix is to make the boundary explicit rather than
+to expect better guessing.
+
+A client repository's own rules override this table. Read them first.
+
 ## Running many items at once
 
 One work item goes to one agent. A folder of work items goes through
@@ -188,3 +231,5 @@ loaded on its own still holds them.
 | Never commit, push, or apply | Prepare the change, draft the message, stop |
 | Follow [`../guidelines/writing-style.md`](../guidelines/writing-style.md) | One voice across every client deliverable |
 | Say where to look, not what is true | Facts belong in the client's `CLAUDE.md`, not in an agent |
+| The brief is not authority | A premise the code contradicts is a finding, not an instruction |
+| Record the ref of every repository read | Not only the ones the brief names |

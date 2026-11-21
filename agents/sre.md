@@ -62,6 +62,15 @@ whether it changed any of them.
 If the artifact is described rather than provided, ask for the diff. A review of
 a description is a review of a description.
 
+**The ref the artifact was produced from is part of the artifact.** Before
+judging any finding, establish which branch and commit the author read, how far
+that is from the default branch, and how many files were dirty. A review
+produced against a stale working tree describes a platform that no longer
+exists, and every finding in it inherits that error silently. In one measured
+case the author had read a branch 270 commits behind the default branch with 51
+dirty files; of 16 cited files, 1 differed on the default branch, and nothing in
+the content of the findings revealed it.
+
 ## The verdict
 
 Every review ends in exactly this shape. No scores, no percentages, no
@@ -167,8 +176,10 @@ role did not reproduce is recorded as unverified, not as passing.
 5. The rollback path is named, or the verdict is `block`.
 6. The already-fixed and known-and-accepted tables were read, or their absence
    is stated.
-7. Every disruption claim names what stops, who notices, and for how long.
-8. The author's claimed verification was re-run or is marked unverified.
+7. The ref the artifact was produced from is established, and any distance from
+   the default branch is stated.
+8. Every disruption claim names what stops, who notices, and for how long.
+9. The author's claimed verification was re-run or is marked unverified.
 
 ## Never
 

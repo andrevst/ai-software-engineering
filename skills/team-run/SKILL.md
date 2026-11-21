@@ -17,17 +17,22 @@ A folder of markdown files, each one a prompt. The convention is the one that
 already exists in project prompt folders, not YAML frontmatter:
 
 ```markdown
-# 05: Prove a GKE pod can reach Aurora in AWS
+# 05: Prove a workload in the new cluster reaches the existing database
 
 **Status:** `ready`
 **Agent:** `cloud-solutions-architect`
-**Linear:** COY-12162
+**Linear:** ACME-412
 **Created:** 2026-11-06
 
 ## Log
 
-- **2026-11-06** Written. Split out of prompt 02.
+- **2026-11-06** Written. Split out of prompt 02, which had grown to cover both
+  the cluster and the network path. They are separate runs because 02 lands
+  first: there is no cluster to connect from until it does.
 ```
+
+The log is the part that earns its keep. It records where the work actually went
+and where it stopped, which is usually not where the prompt said it would.
 
 | Field | Read for | Missing |
 |---|---|---|
@@ -66,6 +71,21 @@ git status --porcelain | wc -l
 Put the result in the run index, and put it in every agent's brief. An agent
 that reads a stale working tree reports yesterday's platform as today's, and no
 amount of content review catches it.
+
+**The record covers every repository an agent actually reads, not only the ones
+the folder names.** A brief that names two repositories and an agent that needs
+a third is normal. Instruct every agent to take the same four measurements for
+any repository it opens beyond the record, and to report the difference. In one
+run the orchestrator recorded two repositories, an agent read a third, and found
+it 38 commits behind the default branch with 7 dirty files. The agent reported
+it because it was told to. Nothing else would have.
+
+**Status is a claim, not a fact.** Before dispatching, spot-check the folder's
+own statuses against the repositories. A folder is maintained by hand and drifts
+from what shipped: in one run three prompts marked `ready` had already been
+completed, and the first agent spent its run reconciling finished work instead
+of planning unfinished work. Any agent may refute the status of its own prompt,
+and that refutation is the most valuable thing it can return.
 
 This gate exists because it has already failed once: a review read the tip of a
 branch 270 commits behind `origin/main` with 51 dirty files and presented it as
@@ -126,10 +146,24 @@ It produces the report, classifies each item, drafts ticket content, and decides
 what the engagement takes on now against what it defers with a promoting
 condition. It files nothing.
 
+**It also names every part of the stated goal that no work item covers.** A goal
+arrives as a sentence and a folder arrives as a set of files, and the two are
+rarely the same shape. In one run the stated goal named two services that
+appeared in no runnable prompt at all, only in a blocked one as namespaces to
+retire. Writing new work items is a different request from executing existing
+ones, and the close-out is where that distinction gets made rather than
+discovered later.
+
 ### Stage 4: write back to the folder
 
 For each prompt that ran, append one dated entry to its `## Log` saying where
 the work actually went and where it stopped, then set `**Status:**`.
+
+Then clean up what the run created. A worktree per agent keeps parallel writers
+from colliding, and an abandoned one is indistinguishable from live work a week
+later. List every worktree and branch the run created, say which are still
+needed for an open pull request, and prune the rest. One repository accumulated
+7 worktrees across runs before anyone noticed.
 
 Write back **only after the verdict**, never between stages 1 and 2. A status of
 `done` on an unverified result is the one write in this flow that corrupts the
@@ -164,7 +198,9 @@ The index states the authority order explicitly, because readers arrive at file
 | Never print a secret value | Confirm by file, line, field name, length, and at most a three-character prefix |
 | Say what the batch deferred | No silent truncation, ever |
 | Status write-back only after the verdict | `done` on an unverified result poisons the next run |
-| State what the run could not reach | A run with no cloud access leaves real questions open. List them and name what would close them |
+| State what the run could not reach | A run with no cloud access leaves real questions open. List them and name what would close them. Six consecutive runs with no cloud read left 11 questions open, including whether a disclosed credential was still active |
+| A premise in a prompt is a claim | A prompt that asserts something the code contradicts gets the contradiction reported, not the assertion carried forward |
+| Clean up the worktrees the run created | An abandoned worktree reads as live work a week later |
 
 ## Invoking it
 
