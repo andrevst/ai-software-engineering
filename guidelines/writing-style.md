@@ -11,6 +11,7 @@ Adapted from k8s_project `writting-style.md` conventions, tested across architec
 - **No buzzwords.** Not "robust", "seamless", "transformative", "game-changer", "best-in-class", "cutting-edge". Name the actual property instead: "retries on transient errors", "single sign-on", "42% faster p99 latency".
 - **US English spelling.** "organize" not "organise", "behavior" not "behaviour".
 - **Specific over vague.** "Latency increased from 45ms to 380ms after the deploy" beats "performance degraded". Numbers always beat adjectives.
+- **Name the author, never possessives.** Do not use "my", "your", "mine", "yours" or "ours" to attribute work. Name the person, use the GitHub handle for pull requests and commits, and say "Claude" for work Claude did. Applies to messages, pull request descriptions, docs, commit messages, and work logs.
 - **No trailing summaries in code responses.** The diff is the proof. Prose that re-explains what the code does is noise.
 
 ## Document structure
